@@ -1,0 +1,27 @@
+
+services:
+  web:
+    build:
+      context: ./BE/SWP391_CareSkin_BE/SWP391_CareSkin_BE
+      dockerfile: Dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=tcp:swpcareskin.database.windows.net,1433;Initial Catalog=CareSkin;Persist Security Info=False;User ID=careskin;Password=abc12345@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=60;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://+:8080"
+    ports:
+      - "4456:8080"
+    networks:
+      - appnet
+
+  fe:
+    build:
+      context: ./FE/SWP391_CareSkin_FE
+      dockerfile: Dockerfile
+    ports:
+      - "80:5173"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

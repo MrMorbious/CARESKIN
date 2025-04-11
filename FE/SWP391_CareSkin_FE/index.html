@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/src/assets/favicon-32x32.png"
+    />
+    <meta
+      name="google-site-verification"
+      content="r8eGCRxZG39JTDijLPoMIm6EKSNG6o3YYrVm6QfDo_M"
+    />
+    <meta
+      name="description"
+      content="CareSkin - Your premier destination for high-quality skincare products. Discover personalized skincare solutions for healthy, radiant skin."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <title>CareSkin</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+      // Create global CareSkin namespace for chat functionality
+      window.CareSkin = window.CareSkin || {};
+
+      // Initialize Tawk.to
+      window.CareSkin.initTawkTo = function () {
+        // Prevent multiple initializations
+        if (window.tawkInitialized) return;
+
+        var Tawk_API = (window.Tawk_API = window.Tawk_API || {});
+        var Tawk_LoadStart = new Date();
+
+        // Get user info from localStorage if available
+        var user = null;
+        try {
+          var userStr = localStorage.getItem('user');
+          if (userStr) user = JSON.parse(userStr);
+        } catch (e) {
+          console.error('Error parsing user data', e);
+        }
+
+        // Set visitor information
+        Tawk_API.visitor = {
+          name: user ? user.UserName || user.FullName || 'Guest' : 'Guest',
+          email: user ? user.Email || 'guest@example.com' : 'guest@example.com',
+        };
+
+        // Configuration options
+        Tawk_API.onBeforeLoad = function () {
+          // Ensure the widget is visible by default
+          Tawk_API.maximized = false;
+        };
+
+        // Set up listener for login/logout events
+        window.addEventListener('careSkinUserChanged', function () {
+          // Update visitor info when user changes
+          try {
+            var updatedUser = JSON.parse(localStorage.getItem('user'));
+            if (updatedUser && Tawk_API.setAttributes) {
+              Tawk_API.setAttributes(
+                {
+                  name: updatedUser.UserName || updatedUser.FullName || 'Guest',
+                  email: updatedUser.Email || 'guest@example.com',
+                },
+                function (error) {
+                  if (error)
+                    console.error('Failed to update Tawk.to visitor', error);
+                }
+              );
+            } else if (!updatedUser && Tawk_API.endChat) {
+              // User logged out
+              Tawk_API.endChat();
+
+              // Reset to guest after brief delay
+              setTimeout(function () {
+                if (Tawk_API.setAttributes) {
+                  Tawk_API.setAttributes(
+                    {
+                      name: 'Guest',
+                      email: 'guest@example.com',
+                    },
+                    function () {}
+                  );
+                }
+              }, 500);
+            }
+          } catch (e) {
+            console.error('Error updating chat visitor data', e);
+          }
+        });
+
+        // Method for logout - to be called from application
+        window.CareSkin.endTawkChat = function () {
+          if (Tawk_API && Tawk_API.endChat) Tawk_API.endChat();
+        };
+
+        // Load the script
+        var s1 = document.createElement('script');
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/67dc7f197bc349190b46342c/1imql0vm8';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        document.head.appendChild(s1);
+
+        window.tawkInitialized = true;
+        console.log('Tawk.to initialized from index.html');
+      };
+
+      // Initialize on page load
+      window.CareSkin.initTawkTo();
+    </script>
+    <!-- End of Tawk.to Script -->
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
