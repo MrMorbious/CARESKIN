@@ -1,5 +1,7 @@
 # CareSkin Shop
 
+[Visit Our Website](http://careskinbeauty.shop)
+
 ![SkinCare Shop Logo](./assets/logo.jpg)
 
 CareSkin Shop is a group project dedicated to developing an e-commerce website for skin care products using React on the front-end. Our goal is to provide users with a modern, responsive, and interactive platform for exploring products, chatting with our support through Tawk.to, and completing secure transactions with integrated payment gateways like Momo, VNPay, and ZaloPay.
